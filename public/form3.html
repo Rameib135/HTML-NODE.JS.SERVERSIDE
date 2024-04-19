@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Album Simple</title>
+</head>
+
+<body>
+    <h1>Simple Album</h1>
+    <form action="/upload" method="post" enctype="multipart/form-data">
+        <label for="image">Upload an image:</label>
+        <input type="file" id="image" name="image" accept="image/*" required><br>
+        <label for="clear">Clear:</label>
+        <input type="checkbox" id="clear" name="clear"><br>
+        <button type="submit">Submit</button>
+    </form>
+</body>
+
+</html>

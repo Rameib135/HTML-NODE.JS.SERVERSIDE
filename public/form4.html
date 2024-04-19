@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration</title>
+</head>
+
+<body>
+    <h1>Registration Form</h1>
+    <form action="/submit-registration" method="post">
+        <label for="firstName">First Name:</label>
+        <input type="text" id="firstName" name="firstName" required><br><br>
+
+        <label for="lastName">Last Name:</label>
+        <input type="text" id="lastName" name="lastName" required><br><br>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required><br><br>
+
+        <label>Gender:</label><br>
+        <input type="radio" id="genderMale" name="gender" value="male" checked>
+        <label for="genderMale">Male</label><br>
+
+        <input type="radio" id="genderFemale" name="gender" value="female">
+        <label for="genderFemale">Female</label><br>
+
+        <input type="radio" id="genderOther" name="gender" value="other">
+        <label for="genderOther">Other</label><br><br>
+
+        <label for="birthDate">Date of Birth:</label>
+        <input type="date" id="birthDate" name="birthDate" required><br><br>
+
+        <input type="checkbox" id="termsAgreement" name="termsAgreement" required>
+        <label for="termsAgreement">I agree to the terms and conditions.</label><br><br>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required><br><br>
+
+        <button type="submit">Submit</button>
+    </form>
+</body>
+
+</html>
