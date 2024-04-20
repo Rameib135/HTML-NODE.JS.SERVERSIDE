@@ -5,41 +5,118 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registration</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #321bc9;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            color: white;
+        }
+
+        form {
+            max-width: 500px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        
+
+     
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="date"],
+        input[type="password"] {
+            width: 70%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: row;
+
+        }
+
+        input[type="radio"],
+        input[type="checkbox"] {
+            margin-right: 5px;
+            margin-bottom: 15px;
+            display: flex;
+
+
+        }
+
+        button[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            
+        }
+
+        button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 
 <body>
     <h1>Registration Form</h1>
     <form action="/submit-registration" method="post">
         <label for="firstName">First Name:</label>
-        <input type="text" id="firstName" name="firstName" required><br><br>
+        <input type="text" id="firstName" name="firstName" required>
 
         <label for="lastName">Last Name:</label>
-        <input type="text" id="lastName" name="lastName" required><br><br>
+        <input type="text" id="lastName" name="lastName" required>
 
         <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required><br><br>
+        <input type="email" id="email" name="email" required>
 
         <label>Gender:</label><br>
         <input type="radio" id="genderMale" name="gender" value="male" checked>
-        <label for="genderMale">Male</label><br>
+        <label for="genderMale">Male</label>
 
         <input type="radio" id="genderFemale" name="gender" value="female">
-        <label for="genderFemale">Female</label><br>
+        <label for="genderFemale">Female</label>
 
         <input type="radio" id="genderOther" name="gender" value="other">
-        <label for="genderOther">Other</label><br><br>
+        <label for="genderOther">Other</label>
+
+        <br><br>
 
         <label for="birthDate">Date of Birth:</label>
-        <input type="date" id="birthDate" name="birthDate" required><br><br>
+        <input type="date" id="birthDate" name="birthDate" required>
+
+        <br>
 
         <input type="checkbox" id="termsAgreement" name="termsAgreement" required>
-        <label for="termsAgreement">I agree to the terms and conditions.</label><br><br>
+        <label for="termsAgreement">I agree to the terms and conditions.</label>
 
         <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required><br><br>
+        <input type="password" id="password" name="password" required>
 
         <button type="submit">Submit</button>
     </form>
 </body>
 
 </html>
+
