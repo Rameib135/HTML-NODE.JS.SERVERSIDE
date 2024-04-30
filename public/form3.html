@@ -5,17 +5,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Album Simple</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .uploaded-images {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .uploaded-image {
+            width: 70%;
+            margin: 10px;
+        }
+    </style>
 </head>
 
 <body>
-    <h1>Simple Album</h1>
-    <form action="/upload" method="post" enctype="multipart/form-data">
-        <label for="image">Upload an image:</label>
-        <input type="file" id="image" name="image" accept="image/*" required><br>
-        <label for="clear">Clear:</label>
-        <input type="checkbox" id="clear" name="clear"><br>
-        <button type="submit">Submit</button>
+    <h1>Album Simple</h1>
+    <form action="http://localhost:4021/submit-album" method="post" enctype="multipart/form-data">
+        <label for="imageFile">Upload Image:</label><br>
+        <input type="file" id="imageFile" name="imageFile" accept="image/*"><br><br>
+        <input type="checkbox" id="clearImages" name="clearImages">
+        <label for="clearImages">Clear previous images</label><br><br>
+        <input type="submit" value="Upload Image">
     </form>
+
+
+
 </body>
 
 </html>
+
