@@ -5,13 +5,13 @@ const fs = require('fs');
 const path = require('path');
 
 const app = express();
-const PORT = 4023;
+const PORT = 4030;
 
 
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: true }));
 
-const upload = multer({ dest: 'uploads/' });
+
 
 
 app.post('/submit', (req, res) => {
@@ -76,6 +76,90 @@ app.post('/submit-text', (req, res) => {
 function getRandomInt(max) {
     return Math.floor(Math.random() * Math.floor(max));
 }
+
+
+//form3
+// Setup multer for file storage
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        const uploadDir = 'uploads/';
+        if (!fs.existsSync(uploadDir)) {
+            fs.mkdirSync(uploadDir, { recursive: true });
+        }
+        cb(null, uploadDir);
+    },
+    filename: function (req, file, cb) {
+        cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
+    }
+});
+const upload = multer({ storage: storage });
+
+app.post('/submit-album', upload.single('imageFile'), (req, res) => {
+    const clearImages = req.body.clearImages === 'on';
+
+    // Directory where images are stored
+    const imgDir = path.join(__dirname, 'public', 'images');
+    if (!fs.existsSync(imgDir)) {
+        fs.mkdirSync(imgDir, { recursive: true });
+    }
+
+    // Clear previous images if requested
+    if (clearImages) {
+        fs.readdir(imgDir, (err, files) => {
+            if (err) {
+                console.error('Failed to read directory for deletion:', err);
+                return res.status(500).send('Server error when trying to clear images.');
+            }
+            for (const file of files) {
+                fs.unlink(path.join(imgDir, file), err => {
+                    if (err) {
+                        console.error('Failed to delete file:', err);
+                        return res.status(500).send('Server error when trying to delete images.');
+                    }
+                });
+            }
+        });
+    }
+
+    // Check if a file is uploaded and is an image
+    if (!req.file) {
+        return res.status(400).send('No image file uploaded.');
+    }
+    if (!req.file.mimetype.startsWith('image')) {
+        return res.status(400).send('Only image files are allowed.');
+    }
+
+    // Move the file to 'public/images'
+    const newFilePath = path.join(imgDir, req.file.filename);
+    fs.rename(req.file.path, newFilePath, (err) => {
+        if (err) {
+            console.error('Failed to move file:', err);
+            return res.status(500).send('Failed to save image.');
+        }
+
+        // Display the uploaded image and any others
+        fs.readdir(imgDir, (err, files) => {
+            if (err) {
+                console.error('Failed to read directory:', err);
+                return res.status(500).send('Server error when trying to display images.');
+            }
+            let imagesHTML = files.map(file => `<img src="images/${file}" style="width: 70%;">`).join('');
+            res.send(`
+                <!DOCTYPE html>
+                <html lang="en">
+                <head>
+                    <meta charset="UTF-8">
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    <title>Uploaded Image</title>
+                </head>
+                <body>
+                    ${imagesHTML}
+                </body>
+                </html>
+            `);
+        });
+    });
+});
 
 // Define route for form submission from form4.html
 // Define route for form submission
