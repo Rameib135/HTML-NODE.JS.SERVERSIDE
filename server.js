@@ -162,6 +162,7 @@ app.post('/submit-album', upload.single('imageFile'), (req, res) => {
     });
 });
 
+
 // Define route for form submission from form4.html
 // Define route for form submission
 app.post('/submit-registration', (req, res) => {
